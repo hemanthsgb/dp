@@ -85,3 +85,23 @@ async function updatePrices() {
 
 // Run the script
 updatePrices();
+
+const express = require('express');
+const app = express();
+const { updatePrices } = require('./app'); // Import your price update function
+
+// Keep Render service alive
+app.get('/', (req, res) => {
+    res.send('Shopify pricing update service is running!');
+});
+
+// Endpoint to manually trigger price update (for cron-job.org)
+app.get('/run-script', async (req, res) => {
+    await updatePrices(); // Run your Shopify price update function
+    res.send('Price update triggered!');
+});
+
+// Start the server on port 3000
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
