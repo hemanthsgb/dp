@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const { updatePrices } = require('./pricing');
+const { updatePrices } = require('./Pricing');
 
 const app = express();
 
