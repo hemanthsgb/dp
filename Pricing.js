@@ -1,3 +1,6 @@
+const axios = require('axios');
+const { getProducts, getMetalPrice, updateProductPrice, PRODUCTS } = require('./helpers');
+
 async function updatePrices() {
     const allProducts = await getProducts();
     if (allProducts.length === 0) {
@@ -28,4 +31,5 @@ async function updatePrices() {
         }
     }
 }
+
 module.exports = { updatePrices };
